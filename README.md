@@ -162,7 +162,7 @@ Given:
 </root>
 ```
 
-The below will `NSLog` "root", "catalog", "book", "genre", "title", and "date" (note the `children` method).
+The example below will `NSLog` "root", "catalog", "book", "genre", "title", and "date" (note the `children` method).
 
 ```swift
 func enumerate(indexer: XMLIndexer) {
@@ -185,6 +185,36 @@ case .Error(let error):
   // error is an NSError instance that you can deal with
 }
 ```
+
+### Printing and Writing XML
+
+Given:
+
+```xml
+<root>
+  <catalog>
+    <book>
+      <genre>Fiction</genre>
+      <title>Book</title>
+      <date>1/1/2015</date>
+    </book>
+  </catalog>
+</root>
+```
+
+The example below will change the text of the `genre` tag:
+
+```swift
+xml["root"]["catalog"]["book"]["genre"].element?.text = "Non Fiction"
+```
+
+All `XMLIndexer`s and `XMLElement`s adopt the `printable` protocol. The below example will print the altered xml.
+
+```swift
+println(xml.description)
+```
+
+
 
 ## TODO
 
